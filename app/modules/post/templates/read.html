@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %}{{ post['title'] }}{% endblock %} {%
+block content %}
+<div style="margin-top: 1rem;">
+
+  <fieldset>
+    {% if post['author']['is_current_user'] %}
+    <div>
+        <a href="{{ post['update_link'] }}" style="margin-right: 1rem;">Edit</a>
+        <a href="{{ post['delete_link'] }}">Delete</a>
+    </div>
+    {% endif %}
+    <span style="font-size: 32px; font-weight: bold;">{{ post['title'] }}</span>
+    <div style="margin-bottom: 0.4rem;">
+        <small>{{ post['datetime'] }}</small>
+    </div>
+    
+    <div style="margin-bottom: 0.4rem;">
+        <a href="{{ post['author']['link'] }}">{{post['author']['name']}}</a>
+    </div>
+    
+    <div style="margin-bottom: 0.4rem;">
+        <span style="white-space: pre-wrap">{{ post['body'] }}</span>
+    </div>
+    
+  </fieldset>
+</div>
+
+{% endblock %}

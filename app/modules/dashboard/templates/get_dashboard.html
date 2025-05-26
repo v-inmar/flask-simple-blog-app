@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+
+{% block title %}Dashboard{% endblock %} 
+
+{% block content %}
+<div><h3>Dashboard</h3></div>
+<fieldset>
+    <legend>Posts</legend>
+    {% if posts | length > 0%}
+        {% for post in posts %}
+        <fieldset style="margin-bottom: 1rem;">
+            <div>
+                <a href="{{ post['url'] }}">{{ post['title'] }}</a>
+            </div>
+            <small>{{ post['datetime'] }}</small>
+        </fieldset>
+
+        {% endfor %}
+    {% else %}
+        <h3 style="font-style: italic">No post yet</h3>
+    {% endif %}
+</fieldset>
+
+
+{% endblock %}

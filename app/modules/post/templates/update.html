@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Update Blog Post{% endblock %}
+
+{% block content %}
+<h1>Update a blog post</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.title.label }}<br>
+        {{ form.title() }}<br>
+        {% for error in form.title.errors %}
+        <small style="color: red;">[{{ error }}]</small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.body.label }}<br>
+        {{ form.body(cols="50", rows="20") }}<br>
+        {% for error in form.body.errors %}
+        <small style="color: red;">[{{ error }}]</small>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+    <a href="{{ url_for('post.read', pid=pid) }}">Cancel</a>
+</form>
+{% endblock %}
