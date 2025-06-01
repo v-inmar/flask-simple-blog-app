@@ -5,15 +5,17 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
-<body>
+
+<body {% if current_user.is_authenticated %} class="d-flex justify-content-center align-items-center vh-100" {% endif %}>
     {% if current_user.is_authenticated %}
     <a href="{{ url_for('auth.logout') }}" style="margin-right: 1rem;">Log Out</a>
     <a href="{{ url_for('dashboard.dashboard') }}" style="margin-right: 1rem;">Dashboard</a>
     <a href="{{ url_for('user.profile', pid=current_user.user_pid.pid) }}" style="margin-right: 1rem;">Profile</a>
     <a href="{{ url_for('post.create') }}" style="margin-right: 1rem;">Create Post</a>
     {% else %}
+    <!-- 
     <a href="{{ url_for('auth.login') }}" style="margin-right: 1rem;">Log In</a>
-    <a href="{{ url_for('auth.register') }}" style="margin-right: 1rem;">Register</a>
+    <a href="{{ url_for('auth.register') }}" style="margin-right: 1rem;">Register</a> -->
     {% endif %}
 
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -23,9 +25,16 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
+
+    {% if not current_user.is_authenticated %}
+    {% block auth_page_content %}{% endblock %}
+    {% else %}
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+    {% endif %}
+    
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
