@@ -22,11 +22,13 @@ class UserModel(AbstractBaseModel, UserMixin):
 
     def set_password(self, new_password):
         # encoded to utf8 so it accepts variety of non-romanized characters
-        self.password = bcrypt.hashpw(password=str(new_password).encode("utf8"), salt=bcrypt.gensalt())
+        hashed_pwd = bcrypt.hashpw(new_password.encode("utf-8"), bcrypt.gensalt())
+        self.password = hashed_pwd.decode("utf-8")
+        # self.password = bcrypt.hashpw(password=str(new_password).encode("utf-8"), salt=bcrypt.gensalt())
 
     def check_password(self, password):
         # encoded to utf8 so it accepts variety of non-romanized characters
-        return bcrypt.checkpw(password=str(password).encode("utf8"), hashed_password=str(self.password).encode("utf8"))
+        return bcrypt.checkpw(password=str(password).encode("utf-8"), hashed_password=str(self.password).encode("utf-8"))
     
     # Since we are using alternative token for the login_manager.user_loader
     # we need to override the UserMixin's get_id() with the one below
