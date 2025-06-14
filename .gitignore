@@ -74,3 +74,6 @@ coverage.xml
 
 # Docker
 *.pid
+
+
+mynotes.txt
