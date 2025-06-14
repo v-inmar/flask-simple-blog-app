@@ -1,4 +1,3 @@
-
 # Flask Simple Blog App
 
 A mini full-stack blogging web app using Flask (python). The web application structure is modular which allows more features to be added as modules. A slight decoupling is also enforced by having a service layer to allow for more thorough testing.
@@ -14,30 +13,32 @@ This project was done in a weekend (O.O)
 - Flask-WTF for working with Forms and Validations for user login and registration, blog creation and update
 - PyMySQL for connecting to MySQL Server
 
-
 ## Considerations (Not Exhaustive)
- - Email Support
-    - Flask-Mail for building email messages
-    - Celery for background task (or something similar)
-    - Redis as message broker (or something similar)
+
+- Email Support
+  - Flask-Mail for building email messages
+  - Celery for background task (or something similar)
+  - Redis as message broker (or something similar)
 - Security
-    - Rate Limit
-    - ReCaptcha
+  - Rate Limit
+  - ReCaptcha
 - Tech
-    - Better error handling
-    - Image handling / CDN
-    - Reverse Proxy / Load Balancer
-    - WSGI server
-    - A better css framework
-    - CI/CD pipeline when Testing is included
+  - Better error handling
+  - Image handling / CDN
+  - Reverse Proxy / Load Balancer
+  - WSGI server
+  - A better css framework ✅
+  - CI/CD pipeline when Testing is included
 - Testing
-    - Integration
-    - Unit
-    - End-to-End
-    - PenTest (if you want)
+  - Integration
+  - Unit ✅
+  - End-to-End
+  - PenTest (if you want)
+
 ## Deployment
 
 Not adviced to be deployed at its current state. But good enough as a project.
+
 ## Run Locally
 
 ```bash
@@ -82,5 +83,3 @@ flask db upgrade
 
 flask run --host="0.0.0.0" --port=5000 --debug --reload
 ```
-
-
